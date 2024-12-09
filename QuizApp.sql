@@ -1,44 +1,31 @@
--- DROP TABLE IF EXISTS users;
--- DROP TABLE IF EXISTS categories;
--- DROP TABLE IF EXISTS questions;
-
--- Create the database
 create DATABASE QuizApp;
 USE QuizApp;
 
--- Create the users table
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
+CREATE TABLE admins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    school VARCHAR(100),
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    name VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE users ADD UNIQUE (username);
-
-
--- Create the categories table
-CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    school VARCHAR(255) NOT NULL
 );
 
--- Insert quiz categories
-INSERT INTO categories (name) VALUES
-('Astronomy'),
-('Biology'),
-('Mathematics'),
-('Computer Science'),
-('History');
+ALTER TABLE students ADD COLUMN score INT DEFAULT 0;
 
-CREATE TABLE users (
+CREATE TABLE questions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    school VARCHAR(100) NOT NULL,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    question TEXT NOT NULL,
+    option_a VARCHAR(100),
+    option_b VARCHAR(100),
+    option_c VARCHAR(100),
+    option_d VARCHAR(100),
+    correct_option CHAR(1)
 );
 
 -- Insert Astronomy questions
@@ -95,5 +82,7 @@ INSERT INTO questions (question, option_a, option_b, option_c, option_d, correct
 ('What is the name of the Moon’s largest crater?', 'Copernicus', 'Tycho', 'South Pole-Aitken Basin', 'Mare Imbrium', 'C');
 
 
+
 select * from questions;
-select * from users;
+select * from students;
+select * from admins;

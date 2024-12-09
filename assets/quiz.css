@@ -1,141 +1,149 @@
-/* General Styling with Background */
+/* General Page Setup */
 body {
-  background: url('DottedPattern.png') no-repeat center center fixed;
-  background-size: cover;
-  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #007bff, #0056b3);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Main Container */
+#main-container {
+  width: 100%;
+  max-width: 960px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #0056b3;
+}
+
+header a {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+header a:hover {
+  color: #0056b3;
+}
+
+/* Timer and Questions */
+#timer {
+  font-size: 1.5rem;
+  color: #444;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+#questions p {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+#questions label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  cursor: pointer;
   color: #333;
 }
 
-/* Main Container Styling */
-#main-container {
-  max-width: 800px;
-  margin: 50px auto;
-  background: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  /* text-align: center; */
+input[type="radio"] {
+  margin-right: 12px;
 }
 
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  header h2 {
-    color: #333333;
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  header a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  header a:hover {
-    text-decoration: underline;
-  }
-  
-  #questionContainer {
-    margin-top: 20px;
-  }
-  
-  #timer {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #444444;
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  
-  #questions {
-    margin-top: 20px;
-  }
-  
-  #questions p {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #444444;
-    margin-bottom: 10px;
-  }
-  
-  #questions label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .feedback {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .feedback.correct {
-    color: green;
-  }
-  
-  .feedback.wrong {
-    color: red;
-  }
-  
-  button {
-    padding: 12px 18px;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  #congratulations {
-    display: none;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  #congratulations h2 {
-    color: #28a745;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  #congratulations p {
-    font-size: 1.2rem;
-    color: #555555;
-  }
-  
-  footer {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #777777;
-  }
-  
+/* Buttons */
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Feedback Messages */
+.feedback {
+  font-size: 1rem;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.feedback.correct {
+  color: #28a745;
+}
+
+.feedback.wrong {
+  color: #dc3545;
+}
+
+/* Congratulations */
+#congratulations {
+  display: none;
+  text-align: center;
+  padding: 30px;
+}
+
+#congratulations h2 {
+  color: #28a745;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#congratulations p {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+

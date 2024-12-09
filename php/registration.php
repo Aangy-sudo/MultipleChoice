@@ -1,51 +1,68 @@
 <?php
 include 'db.php';
 
+$message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $school = $_POST['school'];
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $name = $_POST['name'];
+    $role = $_POST['role'];
+    $school = $role === 'student' ? $_POST['school'] : null;
 
-    $query = "INSERT INTO users (name, school, username, password) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssss', $name, $school, $username, $password);
-
-    if ($stmt->execute()) {
-        header('Location: login.php');
-        exit();
+    if ($role === 'student') {
+        $query = "INSERT INTO students (username, password, name, school) VALUES ('$username', '$password', '$name', '$school')";
     } else {
-        $error = "Failed to register. Username may already exist.";
+        $query = "INSERT INTO admins (username, password, name) VALUES ('$username', '$password', '$name')";
+    }
+
+    if (mysqli_query($conn, $query)) {
+        $message = "Registration successful! Redirecting to login...";
+        echo "<script>
+                setTimeout(() => { window.location.href = 'login.php'; }, 3000);
+              </script>";
+    } else {
+        $message = "Error: " . mysqli_error($conn);
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="../assets/global.css">
+    <title>Registration</title>
+    <link rel="stylesheet" href="../assets/registration.css">
 </head>
 
 <body>
-    <div id="main-container">
-        <h2>Register</h2>
-        <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
-        <form method="POST" action="">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required><br>
-            <label for="school">School/University:</label>
-            <input type="text" id="school" name="school" required><br>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+    <div class="registration-container">
+        <h1>Register</h1>
+        <?php if ($message): ?>
+            <div class="notification"><?= $message ?></div>
+        <?php endif; ?>
+        <form action="registration.php" method="POST">
+            <select name="role" id="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="school" id="school" placeholder="School (for students)" style="display:none;">
             <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </div>
+    <script>
+        document.getElementById('role').addEventListener('change', (e) => {
+            const schoolInput = document.getElementById('school');
+            schoolInput.style.display = e.target.value === 'student' ? 'block' : 'none';
+        });
+    </script>
 </body>
 
 </html>
