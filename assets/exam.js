@@ -74,7 +74,7 @@ function loadNextQuestion() {
 function displayQuestion() {
     const questionDiv = document.getElementById("questions");
     questionDiv.innerHTML = `
-        <p><strong>Question ${questionNumber}: ${currentQuestion.question}</strong></p>
+        <p><strong>Question ${questionNumber}: ${currentQuestion.question}</strong></p><br>
         <label><input type="radio" name="answer" value="A"> ${currentQuestion.option_a}</label><br>
         <label><input type="radio" name="answer" value="B"> ${currentQuestion.option_b}</label><br>
         <label><input type="radio" name="answer" value="C"> ${currentQuestion.option_c}</label><br>

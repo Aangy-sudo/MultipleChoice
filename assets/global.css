@@ -1,11 +1,10 @@
-/* General Reset */
+
 body, h1, h2, h3, p, ul, ol, li, button, input {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Global Body Style */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f9fafb;
@@ -13,7 +12,6 @@ body {
     line-height: 1.6;
 }
 
-/* Centered Container */
 #main-container {
     width: 90%;
     max-width: 800px;
@@ -25,7 +23,6 @@ body {
     text-align: center;
 }
 
-/* Header Style */
 header {
     display: flex;
     justify-content: space-between;
@@ -49,8 +46,6 @@ header a {
 header a:hover {
     text-decoration: underline;
 }
-
-/* Instructions Section */
 #instructions {
     font-size: 1.2rem;
     color: #444;
@@ -70,7 +65,6 @@ header a:hover {
     background-color: #0056b3;
 }
 
-/* Timer */
 #timer {
     font-size: 1.2rem;
     color: #ff5722;
@@ -78,7 +72,6 @@ header a:hover {
     margin-bottom: 20px;
 }
 
-/* Question Container */
 #questions p {
     font-size: 1.2rem;
     font-weight: bold;
@@ -92,7 +85,6 @@ header a:hover {
     cursor: pointer;
 }
 
-/* Feedback */
 .feedback {
     font-size: 1.1rem;
     margin-top: 10px;
@@ -107,7 +99,6 @@ header a:hover {
     color: red;
 }
 
-/* Buttons */
 button {
     padding: 12px 20px;
     font-size: 1rem;
@@ -128,7 +119,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Leaderboard Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -150,7 +140,6 @@ table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Leaderboard Button */
 .btn {
     display: inline-block;
     padding: 10px 15px;
