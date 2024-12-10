@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($admin && password_verify($password, $admin['password'])) {
         $_SESSION['role'] = 'admin';
         $_SESSION['name'] = $admin['name'];
+        $_SESSION['id'] = $admin['id']; // Save the admin ID in the session
         header('Location: admin.php');
         exit;
     }
@@ -28,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($student && password_verify($password, $student['password'])) {
         $_SESSION['role'] = 'student';
         $_SESSION['name'] = $student['name'];
+        $_SESSION['id'] = $student['id']; // Save the student ID in the session
         $_SESSION['school'] = $student['school'];
         header('Location: quiz.php');
         exit;
@@ -37,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = true;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

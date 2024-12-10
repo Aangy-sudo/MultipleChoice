@@ -119,13 +119,28 @@ function finishExam() {
     finalScoreElement.textContent = correctAnswers; // Display user's score
     document.getElementById("congratulations").style.display = "block";
 
+    // Assuming user ID is stored in a global variable or session
+    const userId = localStorage.getItem('userId'); // Or get it from the session
+
     // Save the score to the database
     fetch('submitScore.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ score: correctAnswers })
+        body: JSON.stringify({ user_id: userId, score: correctAnswers }) // Include user_id
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.success) {
+            console.error("Error saving score:", data.error);
+            alert("Failed to save your score. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("An error occurred while saving your score.");
     });
 }
+
 
 // Save user details in localStorage
 function saveUserDetails(name, school) {

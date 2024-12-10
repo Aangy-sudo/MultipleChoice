@@ -1,12 +1,11 @@
 <?php
-session_start(); // Initialize session
+session_start();
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
-    header('Location: login.php'); // Redirect if not a student
+    header('Location: login.php');
     exit;
 }
 
-// Fetch student name from session
 $studentName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8') : 'Student';
 ?>
 

@@ -1,11 +1,3 @@
-<?php
-include 'db.php';
-
-// Fetch leaderboard data
-$query = "SELECT name, school, score FROM students ORDER BY score DESC LIMIT 10";
-$result = mysqli_query($conn, $query);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,14 +23,19 @@ $result = mysqli_query($conn, $query);
             </thead>
             <tbody>
                 <?php
-                if (mysqli_num_rows($result) > 0) {
+                include 'db.php';
+
+                $query = "SELECT name, school, score FROM students ORDER BY score DESC LIMIT 10";
+                $result = $conn->query($query);
+
+                if ($result && $result->num_rows > 0) {
                     $rank = 1;
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                                 <td>{$rank}</td>
-                                <td>{$row['name']}</td>
-                                <td>{$row['school']}</td>
-                                <td>{$row['score']}</td>
+                                <td>" . htmlspecialchars($row['name']) . "</td>
+                                <td>" . htmlspecialchars($row['school']) . "</td>
+                                <td>" . htmlspecialchars($row['score']) . "</td>
                               </tr>";
                         $rank++;
                     }

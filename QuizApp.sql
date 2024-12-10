@@ -13,10 +13,12 @@ CREATE TABLE students (
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
-    school VARCHAR(255) NOT NULL
+    school VARCHAR(255) NOT NULL,
+    score INT NOT NULL DEFAULT 0
 );
 
-ALTER TABLE students ADD COLUMN score INT DEFAULT 0;
+INSERT INTO students (id, username, password, name, school, score) VALUES
+(01, 'Blue', 456, 'Kim', 'USJR', 10);
 
 CREATE TABLE questions (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,8 +83,9 @@ INSERT INTO questions (question, option_a, option_b, option_c, option_d, correct
 ('What is the name of the belt of comets surrounding the solar system?', 'Kuiper Belt', 'Asteroid Belt', 'Oort Cloud', 'Heliosphere', 'C'),
 ('What is the name of the Moon’s largest crater?', 'Copernicus', 'Tycho', 'South Pole-Aitken Basin', 'Mare Imbrium', 'C');
 
-
-
 select * from questions;
 select * from students;
 select * from admins;
+
+drop table students;
+

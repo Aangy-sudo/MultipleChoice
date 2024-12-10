@@ -2,33 +2,43 @@
 include 'db.php';
 session_start();
 
-// Restrict access to admins
-// if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-//     header('Location: login.php');
-//     exit();
-// }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = intval($_POST['delete_id']);
+    $stmt = $conn->prepare("DELETE FROM students WHERE id = ?");
+    $stmt->bind_param("i", $delete_id);
+    if ($stmt->execute()) {
+        $success_message = "Student successfully deleted.";
+    } else {
+        $error_message = "Failed to delete student.";
+    }
+}
 
-$query = "SELECT id, name, school, username, score FROM users ORDER BY id ASC";
-$result = $conn->query($query);
+$query = "SELECT id, name, school, username, score FROM students ORDER BY id ASC";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$students = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
+    <title>Manage Students</title>
     <link rel="stylesheet" href="../assets/manageStudents.css">
 </head>
 
 <body>
     <div id="main-container">
-        <div id="back-to-dashboard">
-            <a href="admin.php" class="btn">Back to Dashboard</a>
-        </div>
-        <div id="header">
-            <h1>Manage Users</h1>
-        </div>
+        <h2>Manage Students</h2>
+        <?php if (!empty($success_message)): ?>
+            <div class="notification success"><?= htmlspecialchars($success_message) ?></div>
+        <?php endif; ?>
+        <?php if (!empty($error_message)): ?>
+            <div class="notification error"><?= htmlspecialchars($error_message) ?></div>
+        <?php endif; ?>
+
         <table>
             <thead>
                 <tr>
@@ -37,27 +47,34 @@ $result = $conn->query($query);
                     <th>School</th>
                     <th>Username</th>
                     <th>Score</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php if ($students->num_rows > 0): ?>
+                    <?php while ($row = $students->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['id']) ?></td>
+                            <td><?= htmlspecialchars($row['name']) ?></td>
+                            <td><?= htmlspecialchars($row['school']) ?></td>
+                            <td><?= htmlspecialchars($row['username']) ?></td>
+                            <td><?= htmlspecialchars($row['score']) ?></td>
+                            <td>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($row['id']) ?>">
+                                    <button type="submit" class="action-btn delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td><?php echo htmlspecialchars($row['school']); ?></td>
-                        <td><?php echo htmlspecialchars($row['username']); ?></td>
-                        <td><?php echo htmlspecialchars($row['score']); ?></td>
-                        <td>
-                            <form method="POST" action="delete_user.php">
-                                <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="delete" class="btn">Delete</button>
-                            </form>
-                        </td>
+                        <td colspan="6">No students found.</td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endif; ?>
             </tbody>
         </table>
+        <a href="admin.php" class="btn">Back to Dashboard</a>
     </div>
 </body>
 

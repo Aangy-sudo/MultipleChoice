@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -13,8 +14,10 @@ body {
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
+    overflow: hidden;
 }
 
 h1 {
@@ -26,43 +29,45 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 input[type="text"], input[type="password"], select {
-    margin-bottom: 15px;
-    padding: 10px;
+    padding: 12px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 select {
     background: #fdfdfd;
     appearance: none;
     cursor: pointer;
-    outline: none;
     color: #555;
     font-size: 14px;
     transition: 0.3s ease;
-}
-
-select:hover {
-    border-color: #007bff;
 }
 
 button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .notification {
@@ -74,4 +79,21 @@ button:hover {
     margin-bottom: 15px;
     text-align: center;
     font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+    .registration-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
 }

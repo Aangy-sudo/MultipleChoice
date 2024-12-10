@@ -1,6 +1,6 @@
-/* Background */
+/* Background Styling */
 body {
-    background: url('Astronomy.png') no-repeat center center fixed;
+    /* background: url('Astronomy.png') no-repeat center center fixed; */
     background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -12,15 +12,16 @@ body {
 #main-container {
     max-width: 800px;
     margin: 50px auto;
-    background: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 12px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     padding: 30px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
 }
 
-/* Heading */
+/* Heading Styling */
 h2 {
     color: #007bff;
     font-size: 2.5rem;
@@ -35,7 +36,7 @@ p {
     font-size: 1.1rem;
 }
 
-/* Table Styles */
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -61,11 +62,13 @@ table tr:nth-child(even) {
     background-color: #f8f9fa;
 }
 
-table td {
-    font-size: 1rem;
+table tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Button Styles */
+/* Button Styling */
 .btn {
     margin-top: 20px;
     display: inline-block;
@@ -90,16 +93,4 @@ table td {
 .btn:active {
     background-color: #004080;
     transform: scale(1);
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

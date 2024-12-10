@@ -146,4 +146,17 @@ footer {
   color: #555;
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  #main-container {
+      padding: 20px;
+  }
 
+  header h2 {
+      font-size: 1.5rem;
+  }
+
+  button {
+      padding: 10px 20px;
+  }
+}

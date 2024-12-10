@@ -10,23 +10,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
     $school = $role === 'student' ? $_POST['school'] : null;
 
-    if ($role === 'student') {
-        $query = "INSERT INTO students (username, password, name, school) VALUES ('$username', '$password', '$name', '$school')";
+    // Validate name
+    if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+        $message = "Name should contain only letters and spaces.";
     } else {
-        $query = "INSERT INTO admins (username, password, name) VALUES ('$username', '$password', '$name')";
-    }
+        // Use prepared statements
+        if ($role === 'student') {
+            $stmt = $conn->prepare("INSERT INTO students (username, password, name, school, score) VALUES (?, ?, ?, ?, ?)");
+            $defaultScore = 0;
+            $stmt->bind_param("ssssi", $username, $password, $name, $school, $defaultScore);
+        } else {
+            $stmt = $conn->prepare("INSERT INTO admins (username, password, name) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $password, $name);
+        }
 
-    if (mysqli_query($conn, $query)) {
-        $message = "Registration successful! Redirecting to login...";
-        echo "<script>
-                setTimeout(() => { window.location.href = 'login.php'; }, 3000);
-              </script>";
-    } else {
-        $message = "Error: " . mysqli_error($conn);
+        if ($stmt->execute()) {
+            $message = "Registration successful! Redirecting to login...";
+            echo "<script>
+                    setTimeout(() => { window.location.href = 'login.php'; }, 3000);
+                  </script>";
+        } else {
+            $message = "Error: " . $conn->error;
+        }
+        $stmt->close();
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
