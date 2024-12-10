@@ -1,5 +1,6 @@
-/* General Styling */
+
 body {
+    background: url('DottedPattern.png') no-repeat center center fixed;
     font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
@@ -11,7 +12,7 @@ body {
     background-color: #007bff;
     color: #fff;
     padding: 20px;
-    text-align: center;
+    text-align:left;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -37,21 +38,18 @@ body {
     border-radius: 5px;
     font-size: 0.9rem;
     transition: background-color 0.3s;
+    margin: 10px;
 }
 
 .logout-btn:hover {
     background-color: #c82333;
 }
 
-/* Main Container */
 #main-container {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
     text-align: center;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -62,7 +60,6 @@ h2 {
     font-weight: 700;
 }
 
-/* Dashboard Sections */
 .dashboard-sections {
     display: flex;
     flex-wrap: wrap;
@@ -116,7 +113,6 @@ h2 {
     transform: scale(1.05);
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .dashboard-sections {
         flex-direction: column;

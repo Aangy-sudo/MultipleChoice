@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="../assets/leaderboard.css">
+    <link rel="stylesheet" href="../assets/leaderboard.css?v=1.2">
 </head>
 
 <body>

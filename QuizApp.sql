@@ -17,9 +17,6 @@ CREATE TABLE students (
     score INT NOT NULL DEFAULT 0
 );
 
-INSERT INTO students (id, username, password, name, school, score) VALUES
-(01, 'Blue', 456, 'Kim', 'USJR', 10);
-
 CREATE TABLE questions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     question TEXT NOT NULL,

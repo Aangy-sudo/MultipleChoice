@@ -1,19 +1,18 @@
-/* General Styling */
+
 body {
-    /* background: url('Astronomy.png') no-repeat center center fixed; */
+    background: url('DottedPattern.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.6; 
 }
 
-/* Main Container */
 #main-container {
     max-width: 800px;
     margin: 50px auto;
-    background: rgba(255, 255, 255, 0.95); /* Slightly increased opacity for readability */
+    background: rgba(255, 255, 255, 0.95); 
     border-radius: 12px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     padding: 30px;
@@ -21,16 +20,14 @@ body {
     overflow: hidden;
 }
 
-/* Page Title */
 h2 {
     color: #2c3e50;
     font-size: 2.5rem;
     margin-bottom: 20px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); /* Reduced shadow intensity */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); 
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -47,7 +44,7 @@ table thead {
 
 table th,
 table td {
-    padding: 12px; /* Reduced padding for a more compact layout */
+    padding: 12px; 
     border: 1px solid #ddd;
     text-align: center;
 }
@@ -67,17 +64,16 @@ table tr:hover {
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Buttons */
 .btn {
     margin-top: 20px;
     display: inline-block;
-    padding: 10px 18px; /* Reduced padding for consistency */
+    padding: 10px 18px;
     background-color: #007bff;
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -86,7 +82,7 @@ table tr:hover {
 
 .btn:hover {
     background-color: #0056b3;
-    transform: scale(1.03); /* Slightly reduced scaling */
+    transform: scale(1.03); 
 }
 
 .btn:active {
@@ -94,13 +90,12 @@ table tr:hover {
     transform: scale(1);
 }
 
-/* Action Buttons (e.g., Delete/Update) */
 .action-btn {
     background-color: #28a745;
     color: #fff;
     padding: 8px 12px;
     border-radius: 5px;
-    font-size: 0.9rem; /* Reduced font size for compact action buttons */
+    font-size: 0.9rem; 
     transition: background-color 0.3s ease;
     display: inline-block;
     text-align: center;
@@ -118,7 +113,6 @@ table tr:hover {
     background-color: #c82333;
 }
 
-/* Notifications */
 .notification {
     padding: 10px;
     border-radius: 5px;

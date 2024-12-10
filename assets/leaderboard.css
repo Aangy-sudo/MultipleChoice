@@ -1,6 +1,6 @@
-/* Background Styling */
+
 body {
-    /* background: url('Astronomy.png') no-repeat center center fixed; */
+    background: url('DottedPattern.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -8,7 +8,6 @@ body {
     color: #333;
 }
 
-/* Main Container */
 #main-container {
     max-width: 800px;
     margin: 50px auto;
@@ -21,7 +20,6 @@ body {
     overflow: hidden;
 }
 
-/* Heading Styling */
 h2 {
     color: #007bff;
     font-size: 2.5rem;
@@ -36,7 +34,6 @@ p {
     font-size: 1.1rem;
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -68,7 +65,6 @@ table tr:hover {
     transition: background-color 0.3s ease;
 }
 
-/* Button Styling */
 .btn {
     margin-top: 20px;
     display: inline-block;
@@ -78,7 +74,7 @@ table tr:hover {
     font-size: 1.1rem;
     font-weight: bold;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

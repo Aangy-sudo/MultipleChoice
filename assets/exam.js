@@ -9,14 +9,14 @@ document.getElementById("startButton").addEventListener("click", startExam);
 document.getElementById("checkButton").addEventListener("click", checkAnswer);
 document.getElementById("nextButton").addEventListener("click", loadNextQuestion);
 
-let timeLeft = 1800; // 30 minutes in seconds
+let timeLeft = 1800; 
 
 function startTimer() {
     const timerDisplay = document.getElementById("timer");
     timer = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(timer);
-            finishExam(); // End quiz when time runs out
+            finishExam(); 
         } else {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
@@ -46,8 +46,8 @@ function fetchQuestions() {
                 alert(data.error);
                 return;
             }
-            questions = data; // Assign fetched questions to the global `questions` array
-            loadNextQuestion(); // Load the first question
+            questions = data;
+            loadNextQuestion();
         })
         .catch(error => {
             console.error("Error fetching questions:", error);
@@ -63,9 +63,8 @@ function loadNextQuestion() {
 
     currentQuestion = questions.shift();
     displayQuestion();
-    questionNumber++; // Increment the question counter
+    questionNumber++; 
 
-    // Reset button states
     document.getElementById("checkButton").disabled = false;
     document.getElementById("nextButton").disabled = true;
     clearFeedback();
@@ -109,23 +108,22 @@ function checkAnswer() {
 
 function clearFeedback() {
     const feedback = document.getElementById("feedback");
-    feedback.textContent = ""; // Clear feedback text
+    feedback.textContent = ""; 
 }
 
 function finishExam() {
     clearInterval(timer);
     document.getElementById("questionContainer").style.display = "none";
     const finalScoreElement = document.getElementById("finalScore");
-    finalScoreElement.textContent = correctAnswers; // Display user's score
+    finalScoreElement.textContent = correctAnswers;
     document.getElementById("congratulations").style.display = "block";
 
     const userId = localStorage.getItem('userId');
 
-    // Save the score to the database
     fetch('submitScore.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, score: correctAnswers }) // Include user_id
+        body: JSON.stringify({ user_id: userId, score: correctAnswers }) 
     })
     .then(response => response.json())
     .then(data => {

@@ -10,11 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
     $school = $role === 'student' ? $_POST['school'] : null;
 
-    // Validate name
     if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $message = "Name should contain only letters and spaces.";
     } else {
-        // Use prepared statements
         if ($role === 'student') {
             $stmt = $conn->prepare("INSERT INTO students (username, password, name, school, score) VALUES (?, ?, ?, ?, ?)");
             $defaultScore = 0;

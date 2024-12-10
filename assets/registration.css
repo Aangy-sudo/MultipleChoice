@@ -1,5 +1,6 @@
-/* General Page Styling */
+
 body {
+    background: url('DottedPattern.png') no-repeat center center fixed;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     display: flex;
@@ -81,7 +82,6 @@ button:hover {
     font-size: 14px;
 }
 
-/* Media Queries */
 @media (max-width: 480px) {
     .registration-container {
         padding: 15px;

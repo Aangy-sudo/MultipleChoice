@@ -2,13 +2,12 @@
 include 'db.php';
 session_start();
 
-$error = false; // Initialize error variable
+$error = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check admins table
     $query = "SELECT * FROM admins WHERE username = '$username'";
     $result = mysqli_query($conn, $query);
     $admin = mysqli_fetch_assoc($result);
@@ -16,12 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($admin && password_verify($password, $admin['password'])) {
         $_SESSION['role'] = 'admin';
         $_SESSION['name'] = $admin['name'];
-        $_SESSION['id'] = $admin['id']; // Save the admin ID in the session
+        $_SESSION['id'] = $admin['id'];
         header('Location: admin.php');
         exit;
     }
 
-    // Check students table
     $query = "SELECT * FROM students WHERE username = '$username'";
     $result = mysqli_query($conn, $query);
     $student = mysqli_fetch_assoc($result);
@@ -29,13 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($student && password_verify($password, $student['password'])) {
         $_SESSION['role'] = 'student';
         $_SESSION['name'] = $student['name'];
-        $_SESSION['id'] = $student['id']; // Save the student ID in the session
+        $_SESSION['id'] = $student['id'];
         $_SESSION['school'] = $student['school'];
         header('Location: quiz.php');
         exit;
     }
 
-    // Set error flag
     $error = true;
 }
 ?>
@@ -48,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../assets/login.css">
+    <link rel="stylesheet" href="../assets/login.css?v=1.2">
 </head>
 
 <body>
