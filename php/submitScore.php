@@ -15,7 +15,7 @@ if (!$user_id || !$score) {
 }
 
 // Update the score in the database
-$sql = "UPDATE students SET score = ? WHERE id = ?";
+$sql = "UPDATE students SET score = GREATEST(score, ?) WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $score, $user_id);
 
@@ -27,3 +27,4 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
+$conn->close();

@@ -7,6 +7,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
 }
 
 $studentName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8') : 'Student';
+$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+
+if (!$userId) {
+    header('Location: login.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +60,10 @@ $studentName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name'], EN
         </footer>
     </div>
 
+    <script>
+        // Save user_id in localStorage for use in the quiz
+        localStorage.setItem('userId', <?= json_encode($userId) ?>);
+    </script>
     <script src="../assets/exam.js"></script>
 </body>
 

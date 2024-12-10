@@ -13,9 +13,9 @@ let timeLeft = 1800; // 30 minutes in seconds
 
 function startTimer() {
     const timerDisplay = document.getElementById("timer");
-    const interval = setInterval(() => {
+    timer = setInterval(() => {
         if (timeLeft <= 0) {
-            clearInterval(interval);
+            clearInterval(timer);
             finishExam(); // End quiz when time runs out
         } else {
             const minutes = Math.floor(timeLeft / 60);
@@ -119,8 +119,7 @@ function finishExam() {
     finalScoreElement.textContent = correctAnswers; // Display user's score
     document.getElementById("congratulations").style.display = "block";
 
-    // Assuming user ID is stored in a global variable or session
-    const userId = localStorage.getItem('userId'); // Or get it from the session
+    const userId = localStorage.getItem('userId');
 
     // Save the score to the database
     fetch('submitScore.php', {
@@ -139,19 +138,4 @@ function finishExam() {
         console.error("Error:", error);
         alert("An error occurred while saving your score.");
     });
-}
-
-
-// Save user details in localStorage
-function saveUserDetails(name, school) {
-    localStorage.setItem('userName', name);
-    localStorage.setItem('userSchool', school);
-}
-
-// Fetch user details from localStorage
-function getUserDetails() {
-    return {
-        name: localStorage.getItem('userName'),
-        school: localStorage.getItem('userSchool')
-    };
 }
