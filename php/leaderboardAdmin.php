@@ -1,17 +1,27 @@
+<?php
+session_start();
+
+// Ensure only logged-in admins can access this leaderboard
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>Admin Leaderboard</title>
     <link rel="stylesheet" href="../assets/leaderboard.css?v=1.2">
 </head>
 
 <body>
     <div id="main-container">
-        <h2>Leaderboard</h2>
-        <p>Top performers among students</p>
+        <h2>Admin Leaderboard</h2>
+        <p>All students and their scores</p>
         <table>
             <thead>
                 <tr>
@@ -25,7 +35,7 @@
                 <?php
                 include 'db.php';
 
-                $query = "SELECT name, school, score FROM students ORDER BY score DESC LIMIT 10";
+                $query = "SELECT name, school, score FROM students ORDER BY score DESC";
                 $result = $conn->query($query);
 
                 if ($result && $result->num_rows > 0) {
@@ -45,6 +55,7 @@
                 ?>
             </tbody>
         </table>
+
         <a href="admin.php" class="btn">Back to Dashboard</a>
     </div>
 </body>

@@ -13,6 +13,14 @@ if (!$userId) {
     header('Location: login.php');
     exit;
 }
+
+include 'db.php';
+$resetScoreQuery = "UPDATE students SET score = 0 WHERE id = ?";
+$stmt = $conn->prepare($resetScoreQuery);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$stmt->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +30,7 @@ if (!$userId) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="../assets/quiz.css">
+    <link rel="stylesheet" href="../assets/quiz.css?v=1.2">
 </head>
 
 <body>
@@ -40,17 +48,18 @@ if (!$userId) {
 
         <div id="questionContainer" style="display: none;">
             <p id="timer">Time Elapsed: <span>00:00</span></p>
+            <div id="questionNumber"></div> <!-- New -->
             <div id="questions"></div>
             <button id="checkButton" disabled>Check Answer</button>
             <button id="nextButton" disabled>Next</button>
         </div>
 
+
         <div id="congratulations" style="display: none;">
             <h2>Congratulations!</h2>
             <p>You have completed the quiz. Well done!</p>
             <p>Your score is: <span id="finalScore"></span></p>
-            <button onclick="location.reload()">Retake Quiz</button>
-            <button onclick="location.href='logout.php'">Logout</button>
+            <button onclick="location.href='leaderboardQuiz.php'">View Leaderboard</button>
         </div>
 
         <footer>

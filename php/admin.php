@@ -26,7 +26,7 @@ session_start();
             <div class="dashboard-card">
                 <h3>Leaderboard</h3>
                 <p>View the top scores of students.</p>
-                <a href="leaderboard.php" class="btn">Go to Leaderboard</a>
+                <a href="leaderboardAdmin.php" class="btn">Go to Leaderboard</a>
             </div>
             <div class="dashboard-card">
                 <h3>Manage Students</h3>

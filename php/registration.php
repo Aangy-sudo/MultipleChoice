@@ -10,27 +10,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
     $school = $role === 'student' ? $_POST['school'] : null;
 
+    // Basic validation for name
     if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $message = "Name should contain only letters and spaces.";
     } else {
-        if ($role === 'student') {
-            $stmt = $conn->prepare("INSERT INTO students (username, password, name, school, score) VALUES (?, ?, ?, ?, ?)");
-            $defaultScore = 0;
-            $stmt->bind_param("ssssi", $username, $password, $name, $school, $defaultScore);
-        } else {
-            $stmt = $conn->prepare("INSERT INTO admins (username, password, name) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $password, $name);
-        }
+        try {
+            if ($role === 'student') {
+                $stmt = $conn->prepare("INSERT INTO students (username, password, name, school, score) VALUES (?, ?, ?, ?, 0)");
+                $stmt->bind_param("ssss", $username, $password, $name, $school);
+            } else {
+                $stmt = $conn->prepare("INSERT INTO admins (username, password, name) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $username, $password, $name);
+            }
 
-        if ($stmt->execute()) {
-            $message = "Registration successful! Redirecting to login...";
-            echo "<script>
-                    setTimeout(() => { window.location.href = 'login.php'; }, 3000);
-                  </script>";
-        } else {
-            $message = "Error: " . $conn->error;
+            if ($stmt->execute()) {
+                header("Location: login.php");
+                exit;
+            } else {
+                $message = "Error: " . $conn->error;
+            }
+        } catch (Exception $e) {
+            $message = "An error occurred: " . $e->getMessage();
         }
-        $stmt->close();
     }
 }
 ?>
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="registration-container">
         <h1>Register</h1>
         <?php if ($message): ?>
-            <div class="notification"><?= $message ?></div>
+            <div class="notification"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
         <form action="registration.php" method="POST">
             <select name="role" id="role" required>
@@ -57,17 +58,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="student">Student</option>
                 <option value="admin">Admin</option>
             </select>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="text" name="name" id="name" placeholder="Name" required>
             <input type="text" name="school" id="school" placeholder="School (for students)" style="display:none;">
             <button type="submit">Register</button>
         </form>
     </div>
     <script>
-        document.getElementById('role').addEventListener('change', (e) => {
-            const schoolInput = document.getElementById('school');
-            schoolInput.style.display = e.target.value === 'student' ? 'block' : 'none';
+        // Show or hide the school input based on role selection
+        document.getElementById('role').addEventListener('change', function() {
+            var schoolInput = document.getElementById('school');
+            var schoolLabel = document.getElementById('school-label');
+            if (this.value === 'student') {
+                schoolInput.style.display = 'block';
+                schoolLabel.style.display = 'block';
+            } else {
+                schoolInput.style.display = 'none';
+                schoolLabel.style.display = 'none';
+            }
         });
     </script>
 </body>

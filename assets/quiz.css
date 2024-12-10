@@ -1,23 +1,22 @@
 body {
   background: url('DottedPattern.png') no-repeat center center fixed;
-  color: #fff;
+  background-size: cover;
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
 }
 
 #main-container {
   width: 100%;
   max-width: 960px;
   background: rgba(255, 255, 255, 0.95);
-  color: #333;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
   padding: 40px;
   text-align: center;
   overflow-y: auto;
@@ -28,14 +27,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid #f0f0f0;
   padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 header h2 {
   font-size: 2rem;
-  color: #0056b3;
+  color: #007bff;
+  margin: 0;
 }
 
 header a {
@@ -43,21 +43,35 @@ header a {
   font-weight: bold;
   text-decoration: none;
   color: #007bff;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.2s;
 }
 
 header a:hover {
   color: #0056b3;
+  transform: translateY(-3px);
 }
 
 #timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.2rem;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#questionContainer {
+  margin-top: 20px;
+}
+
+#questionNumber {
   font-size: 1.5rem;
-  color: #444;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  padding: 10px 15px;
-  display: inline-block;
-  margin-bottom: 30px;
+  color: #007bff;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 #questions p {
@@ -68,18 +82,31 @@ header a:hover {
 
 #questions label {
   display: block;
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 10px;
   cursor: pointer;
   color: #333;
+  padding: 10px 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#questions label:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
 }
 
 input[type="radio"] {
   margin-right: 12px;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 button {
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 1rem;
   font-weight: bold;
   background-color: #007bff;
@@ -87,8 +114,10 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 20px 10px;
   transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
+  text-align: center;
 }
 
 button:hover {
@@ -102,7 +131,7 @@ button:disabled {
 }
 
 .feedback {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-top: 20px;
   font-weight: bold;
 }
@@ -135,19 +164,20 @@ button:disabled {
 footer {
   margin-top: 30px;
   font-size: 0.9rem;
-  color: #555;
+  color: #777;
 }
 
 @media (max-width: 768px) {
   #main-container {
-      padding: 20px;
+    padding: 20px;
   }
 
   header h2 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   button {
-      padding: 10px 20px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
   }
 }
