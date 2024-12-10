@@ -36,7 +36,7 @@ $stmt->close();
 <body>
     <div id="main-container">
         <header>
-            <h2>Welcome, <?= $studentName ?>!</h2>
+            <h2>Hello, <?= $studentName ?>!</h2>
             <a href="logout.php">Logout</a>
         </header>
 
@@ -48,12 +48,11 @@ $stmt->close();
 
         <div id="questionContainer" style="display: none;">
             <p id="timer">Time Elapsed: <span>00:00</span></p>
-            <div id="questionNumber"></div> <!-- New -->
+            <div id="questionNumber"></div>
             <div id="questions"></div>
             <button id="checkButton" disabled>Check Answer</button>
             <button id="nextButton" disabled>Next</button>
         </div>
-
 
         <div id="congratulations" style="display: none;">
             <h2>Congratulations!</h2>
@@ -63,7 +62,7 @@ $stmt->close();
         </div>
 
         <footer>
-            <p>&copy; <?= date("Y") ?> Quiz System</p>
+            <p>&copy; <?= date("Y") ?> Datanauts</p>
         </footer>
     </div>
 

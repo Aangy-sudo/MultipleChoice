@@ -72,18 +72,38 @@ function loadNextQuestion() {
 
 function displayQuestion() {
     var questionDiv = document.getElementById("questions");
-    questionDiv.innerHTML =
-        "<p><strong>Question " + questionNumber + ": " + currentQuestion.question + "</strong></p><br>" +
-        "<label><input type='radio' name='answer' value='A'> " + currentQuestion.option_a + "</label><br>" +
-        "<label><input type='radio' name='answer' value='B'> " + currentQuestion.option_b + "</label><br>" +
-        "<label><input type='radio' name='answer' value='C'> " + currentQuestion.option_c + "</label><br>" +
-        "<label><input type='radio' name='answer' value='D'> " + currentQuestion.option_d + "</label><br>" +
+    questionDiv.innerHTML = 
+        "<p><strong>Question " + questionNumber + ": " + currentQuestion.question + "</strong></p>" +
+        "<div class='option-button'>" +
+            "<label><input type='radio' name='answer' value='A'> " + currentQuestion.option_a + "</label>" +
+        "</div>" +
+        "<div class='option-button'>" +
+            "<label><input type='radio' name='answer' value='B'> " + currentQuestion.option_b + "</label>" +
+        "</div>" +
+        "<div class='option-button'>" +
+            "<label><input type='radio' name='answer' value='C'> " + currentQuestion.option_c + "</label>" +
+        "</div>" +
+        "<div class='option-button'>" +
+            "<label><input type='radio' name='answer' value='D'> " + currentQuestion.option_d + "</label>" +
+        "</div>" +
         "<p id='feedback' class='feedback'></p>";
+
+    var options = document.querySelectorAll(".option-button");
+    for (var i = 0; i < options.length; i++) {
+        options[i].addEventListener("click", function() {
+            for (var j = 0; j < options.length; j++) {
+                options[j].classList.remove("selected");
+            }
+            this.classList.add("selected");
+            this.querySelector("input[type='radio']").checked = true;
+        });
+    }
 }
 
+
 function checkAnswer() {
-    var selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    var feedback = document.getElementById("feedback");
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    const feedback = document.getElementById("feedback");
 
     if (!selectedAnswer) {
         feedback.textContent = "Please select an answer.";
@@ -91,7 +111,7 @@ function checkAnswer() {
         return;
     }
 
-    var isCorrect = selectedAnswer.value === currentQuestion.correct_option;
+    const isCorrect = selectedAnswer.value === currentQuestion.correct_option;
 
     if (isCorrect) {
         correctAnswers++;
@@ -101,6 +121,11 @@ function checkAnswer() {
         feedback.textContent = "Wrong!";
         feedback.style.color = "red";
     }
+
+    const allRadios = document.querySelectorAll('input[name="answer"]');
+    allRadios.forEach(radio => {
+        radio.disabled = true; 
+    });
 
     document.getElementById("checkButton").disabled = true;
     document.getElementById("nextButton").disabled = false;
