@@ -9,7 +9,7 @@ document.getElementById("startButton").addEventListener("click", startExam);
 document.getElementById("checkButton").addEventListener("click", checkAnswer);
 document.getElementById("nextButton").addEventListener("click", loadNextQuestion);
 
-var timeLeft = 1800; // 30 minutes in seconds
+var timeLeft = 20; 
 
 function startTimer() {
     var timerDisplay = document.getElementById("timer");

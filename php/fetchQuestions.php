@@ -3,7 +3,7 @@ include 'db.php';
 
 header('Content-Type: application/json');
 
-$query = "SELECT id, question, option_a, option_b, option_c, option_d, correct_option FROM questions ORDER BY RAND() LIMIT 20";
+$query = "SELECT id, question, option_a, option_b, option_c, option_d, correct_option FROM questions ORDER BY RAND() LIMIT 5";
 $result = $conn->query($query);
 
 $questions = [];

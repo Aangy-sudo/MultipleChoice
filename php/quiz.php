@@ -58,7 +58,7 @@ $stmt->close();
             <h2>Congratulations!</h2>
             <p>You have completed the quiz. Well done!</p>
             <p>Your score is: <span id="finalScore"></span></p>
-            <button onclick="location.href='leaderboardQuiz.php'">View Leaderboard</button>
+            <button onclick="location.href='../leaderboardQuiz.html'">View Leaderboard</button>
         </div>
 
         <footer>

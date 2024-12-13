@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Leaderboard</title>
+    <link rel="stylesheet" href="./assets/leaderboard.css?v=1.2">
+</head>
+
+<body>
+    <div id="main-container">
+        <h2>Quiz Leaderboard</h2>
+        <p>Top performers among students</p>
+        <p id="error-message" style="color: red; display: none;"></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>School</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- content will be added here by the js-->
+            </tbody>
+        </table>
+
+        <button onclick="backToQuiz()" class="btn">Back to Quiz</button>
+        <button onclick="logout()" class="btn">Logout</button>
+    </div>
+
+    <script src="./js/leaderboardQuiz.js"></script> 
+</body>
+
+</html>

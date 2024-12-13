@@ -26,12 +26,12 @@ session_start();
             <div class="dashboard-card">
                 <h3>Leaderboard</h3>
                 <p>View the top scores of students.</p>
-                <a href="leaderboardAdmin.php" class="btn">Go to Leaderboard</a>
+                <a href="../leaderboardAdmin.html" class="btn">Go to Leaderboard</a>
             </div>
             <div class="dashboard-card">
                 <h3>Manage Students</h3>
                 <p>Delete or reset scores of students.</p>
-                <a href="manageStudents.php" class="btn">Manage Students</a>
+                <a href="../manageStudents.html" class="btn">Manage Students</a>
             </div>
         </div>
     </main>

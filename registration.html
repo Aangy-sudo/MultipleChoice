@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="./assets/registration.css">
+</head>
+
+<body>
+    <div class="registration-container">
+        <h1>Register</h1>
+        <form id="registration-form">
+            <label for="role">Select Role:</label>
+            <select name="role" id="role" required>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+
+            <input type="password" name="password" id="password" placeholder="Password" required>
+
+            <input type="text" name="name" id="name" placeholder="Name" required>
+
+            <input type="text" name="school" id="school" placeholder="School" style="display: none;">
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script src="./js/registration.js"></script>
+</body>
+
+</html>
